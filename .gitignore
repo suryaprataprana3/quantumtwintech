@@ -6,9 +6,6 @@ media/
 */__pycache__/
 *migrations
 *.pyc
-*.jpg
-*.png
-*.json
 .idea/
 *.out
 *.log
