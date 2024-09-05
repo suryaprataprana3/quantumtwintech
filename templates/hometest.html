@@ -230,64 +230,6 @@
             border-color: #0083b0;
         }
 
-        /* Hero Section Styling */
-        #hero {
-            background: url('your-background-image.jpg') center center / cover no-repeat;
-            color: #fff;
-            position: relative;
-            height: 100vh;
-        }
-
-        #hero .container {
-            z-index: 2;
-        }
-
-        #hero h1 {
-            font-size: 3rem;
-            color: #fff;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        #hero p {
-            font-size: 1.5rem;
-            color: #f8f9fa;
-            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        #hero .btn-primary {
-            background-color: #00b4db;
-            border-color: #00b4db;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        #hero .btn-primary:hover {
-            background-color: #0083b0;
-            transform: translateY(-5px);
-        }
-
-        #hero .btn-outline-light {
-            border-color: #fff;
-            color: #fff;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        #hero .btn-outline-light:hover {
-            color: #00b4db;
-            border-color: #00b4db;
-            background-color: transparent;
-            transform: translateY(-5px);
-        }
-
-        #hero .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
         .hover-card:hover {
             transform: scale(1.05);
             transition: transform 0.3s ease;
@@ -299,6 +241,50 @@
             transform: translateY(-10px);
             transition: transform 0.3s ease;
             box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        #hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay with 50% opacity */
+            z-index: 0;
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-animated {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-animated:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-outline-light {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #ffffff;
+            color: #007bff;
         }
     </style>
 </head>
@@ -340,14 +326,16 @@
 
 
     <!-- Hero Section -->
-    <section id="hero" class="d-flex align-items-center justify-content-center text-center" style="height: 100vh;">
-        <div class="container position-relative" data-aos="fade-up" data-aos-delay="200">
-            <h1 class="display-4 text-uppercase font-weight-bold mb-4">Welcome to QuantumTwin Technologies</h1>
-            <p class="lead mb-5">Transforming Ideas into Reality with Innovative Solutions</p>
-            <a href="#contact" class="btn btn-primary btn-lg px-5 py-3">Get in Touch</a>
-            <a href="#services" class="btn btn-outline-light btn-lg px-5 py-3 ms-3">Explore Services</a>
-        </div>
+    <section id="hero" class="d-flex align-items-center justify-content-center text-center position-relative"
+        style="height: 100vh; background: url('{% static '/images/5641716.jpg' %}') no-repeat center center; background-size: cover;">
         <div class="overlay"></div>
+        <div class="container position-relative z-index-1" data-aos="fade-up" data-aos-delay="200">
+            <h1 class="display-4 text-uppercase font-weight-bold mb-4 text-shadow">Welcome to QuantumTwin Technologies
+            </h1>
+            <p class="lead mb-5 text-light">Transforming Ideas into Reality with Innovative Solutions</p>
+            <a href="#contact" class="btn btn-primary btn-lg px-5 py-3 me-2 btn-animated">Get in Touch</a>
+            <a href="#services" class="btn btn-outline-light btn-lg px-5 py-3 btn-animated">Explore Services</a>
+        </div>
     </section>
 
 
