@@ -1,0 +1,819 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumTwin Technologies</title>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Google Fonts -->
+    <!-- <link href="{% static 'css/googlefonts.css' %}" rel="stylesheet"> -->
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- AOS CSS for Animations -->
+    <link href="{% static 'css/aos.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Modern Light Theme */
+        body {
+            background-color: #f5f5f5;
+            /* background-color: #0d0d0d; */
+
+            /* color: #333; */
+            color: #e0e0e0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+        .navbar-nav .nav-link {
+            color: #333 !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .btn-outline-light {
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #ffffff;
+            color: #0d0d0d;
+        }
+
+        #services {
+            background: linear-gradient(135deg, #333333, #444444);
+            color: #ffffff;
+        }
+
+        .service-card {
+            border-radius: 12px;
+            background-color: #ffffff;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        }
+
+        .portfolio-card img {
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card img:hover {
+            transform: scale(1.05);
+        }
+
+        #about {
+            background-color: #1a1a1a;
+        }
+
+        #contact {
+            background-color: #ffffff;
+            color: #333;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .form-control {
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
+
+        .form-control:focus {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border-color: #666;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #a0a0a0;
+        }
+
+        .hero-section {
+            /* background: url('https://www.cest.org.uk/wp-content/uploads/2021/07/cest-importance-of-science-business.jpg') no-repeat center center/cover; */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .card {
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .bg-secondary {
+            background-color: #2c2c2c !important;
+        }
+
+        .border-light {
+            border-color: #ffffff !important;
+        }
+
+        .text-primary {
+            color: #00b4db !important;
+        }
+
+        /* Additional CSS for a stylish header */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent background */
+            backdrop-filter: blur(5px);
+            /* Blur effect for the background */
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            /* Logo height */
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00b4db !important;
+            /* Change color on hover */
+        }
+
+        .navbar-toggler {
+            border-color: #ffffff;
+        }
+
+        .navbar-toggler-icon-custom {
+            background-image: url('{% static "images/toggler-icon.png" %}');
+            /* Custom toggler icon */
+        }
+
+        #contact {
+            background-color: #1c1c1c;
+            color: #f8f9fa;
+        }
+
+        .contact-info h5 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: #00b4db;
+        }
+
+        .contact-info p {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        .contact-info i {
+            color: #00b4db;
+        }
+
+        .btn-primary {
+            background-color: #00b4db;
+            border-color: #00b4db;
+        }
+
+        .btn-primary:hover {
+            background-color: #0083b0;
+            border-color: #0083b0;
+        }
+
+        .hover-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .mission-card:hover,
+        .values-card:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        #hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay with 50% opacity */
+            z-index: 0;
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-animated {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-animated:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-outline-light {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #ffffff;
+            color: #007bff;
+        }
+
+        .contact-info {
+            background-color: #2c2c2c;
+        }
+
+        .contact-info i {
+            color: #007bff;
+            /* Primary color for icons */
+        }
+
+        .contact-info h5 {
+            color: #ffffff;
+        }
+
+        .contact-info p {
+            color: #d1d1d1;
+        }
+
+        .social-media a {
+            color: #ffffff;
+        }
+
+        .social-media a:hover {
+            color: #007bff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/logo.jpeg' %}" alt="" style="height: 40px;">
+                QuantumTwin Technologies
+            </a>
+            <!-- Toggler Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#research-development">R&D</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#ourteams">Our Team</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex align-items-center justify-content-center text-center position-relative"
+        style="height: 100vh; background: url('{% static '/images/5641716.jpg' %}') no-repeat center center; background-size: cover;">
+        <div class="overlay"></div>
+        <div class="container position-relative z-index-1" data-aos="fade-up" data-aos-delay="200">
+            <h1 class="display-4 text-uppercase font-weight-bold mb-4 text-shadow">Welcome to QuantumTwin Technologies
+            </h1>
+            <p class="lead mb-5 text-light">Transforming Ideas into Reality with Innovative Solutions</p>
+            <a href="#contact" class="btn btn-primary btn-lg px-5 py-3 me-2 btn-animated">Get in Touch</a>
+            <a href="#services" class="btn btn-outline-light btn-lg px-5 py-3 btn-animated">Explore Services</a>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-5"
+        style="background: linear-gradient(135deg, #0d47a1 0%, #42a5f5 100%); color: white;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Advanced solutions to meet your
+                    needs</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-brain fa-3x mb-3 text-warning"></i>
+                            <h4 class="card-title">Artificial Intelligence</h4>
+                            <p class="card-text">Leveraging AI technologies to create smart, predictive, and adaptive
+                                solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-mobile-alt fa-3x mb-3 text-info"></i>
+                            <h4 class="card-title">Hybrid & Native Apps</h4>
+                            <p class="card-text">Developing cross-platform and native mobile applications tailored to
+                                your needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-network-wired fa-3x mb-3 text-success"></i>
+                            <h4 class="card-title">IoT</h4>
+                            <p class="card-text">Connecting and optimizing smart devices for seamless, efficient, and
+                                intelligent integration.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-cloud fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Cloud Solutions</h4>
+                            <p class="card-text">Deploy scalable, secure, and resilient cloud infrastructure for your
+                                business needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-tools fa-3x mb-3 text-danger"></i>
+                            <h4 class="card-title">DevOps</h4>
+                            <p class="card-text">Streamlining development and operations for faster and more reliable
+                                software delivery.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-code fa-3x mb-3 text-warning"></i>
+                            <h4 class="card-title">Python Development</h4>
+                            <p class="card-text">Building robust and scalable applications using Python's diverse
+                                ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-globe fa-3x mb-3 text-info"></i>
+                            <h4 class="card-title">Web Development</h4>
+                            <p class="card-text">Building dynamic and responsive websites to enhance your online
+                                presence.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-database fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Data Engineering</h4>
+                            <p class="card-text">Designing and managing data pipelines and systems for effective data
+                                management.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-robot fa-3x mb-3 text-success"></i>
+                            <h4 class="card-title">Generative AI</h4>
+                            <p class="card-text">Creating advanced AI models that generate innovative new content and
+                                cutting-edge solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-lightbulb fa-3x mb-3 text-danger"></i>
+                            <h4 class="card-title">Research & Innovation</h4>
+                            <p class="card-text">Driving progress through cutting-edge research and innovative, creative
+                                solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-shield-alt fa-3x mb-3 text-warning"></i>
+                            <h4 class="card-title">Cybersecurity</h4>
+                            <p class="card-text">Implementing advanced security measures to protect your digital assets.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card service-card text-center border-0 shadow-lg"
+                        style="background-color: rgba(255, 255, 255, 0.1);">
+                        <div class="card-body">
+                            <i class="fas fa-dna fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Quantum Computing</h4>
+                            <p class="card-text">Exploring quantum algorithms and applications to solve complex
+                                problems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Research and Development Section -->
+    <section id="research-development" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 style="color: #0d0d0d;" class="section-title" data-aos="fade-up">Research and Development</h2>
+                <p style="color: #0d0d0d;" class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Pushing the boundaries of innovation
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                    <div class="card portfolio-card border-0">
+                        <!-- <img src="research1.jpg" class="card-img-top" alt="Research 1"> -->
+                        <div class="card-body">
+                            <h4 class="card-title">Next-Gen AI Algorithms</h4>
+                            <p class="card-text">Developing cutting-edge algorithms to enhance machine learning
+                                capabilities and intelligence.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card portfolio-card border-0">
+                        <!-- <img src="research2.jpg" class="card-img-top" alt="Research 2"> -->
+                        <div class="card-body">
+                            <h4 class="card-title">Quantum Computing Solutions</h4>
+                            <p class="card-text">Exploring the potential of quantum computing to solve complex problems
+                                and optimize processes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card portfolio-card border-0">
+                        <!-- <img src="research3.jpg" class="card-img-top" alt="Research 3"> -->
+                        <div class="card-body">
+                            <h4 class="card-title">Innovative IoT Applications</h4>
+                            <p class="card-text">Creating groundbreaking Internet of Things (IoT) solutions for smart
+                                environments and automation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- My Team Section -->
+    <section id="ourteams" class="py-5 bg-dark text-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Meet Our Team</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">The visionaries behind QuantumTwin
+                    Technologies</p>
+            </div>
+            <div class="row">
+                <!-- Abhimanyu Singh Rana -->
+                <div class="col-md-6 mb-4" data-aos="fade-up">
+                    <div class="card text-center border-0 bg-secondary text-light shadow-lg rounded-3">
+                        <div class="card-body p-4">
+                            <div class="position-relative">
+                                <img src="{% static '/images/1714528306006.jpeg' %}"
+                                    class="img-fluid rounded-circle mb-3 border border-light" alt="Abhimanyu Singh Rana"
+                                    style="width: 180px; height: 180px; object-fit: cover;">
+                            </div>
+                            <h4 class="card-title mb-2">Abhimanyu Singh Rana</h4>
+                            <p class="card-text text-light mb-3">Co-Founder & Director</p>
+                            <p class="card-text">Abhimanyu is a strategic thinker with a wealth of experience in driving
+                                technological innovations and leading high-performing teams.</p>
+                            <!-- Social Media Links -->
+                            <div class="d-flex justify-content-center mt-3">
+                                <a href="mailto:abhimanyu@quantumtwintech.com" class="text-light me-3">
+                                    <i class="fas fa-envelope fa-2x"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/ranaabhimanyu/" class="text-light me-3"
+                                    target="_blank">
+                                    <i class="fab fa-linkedin fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Surya Pratap Rana -->
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card text-center border-0 bg-secondary text-light shadow-lg rounded-3">
+                        <div class="card-body p-4">
+                            <div class="position-relative">
+                                <img src="{% static '/images/1577517361125.jpeg' %}"
+                                    class="img-fluid rounded-circle mb-3 border border-light" alt="Surya Pratap Rana"
+                                    style="width: 180px; height: 180px; object-fit: cover;">
+                            </div>
+                            <h4 class="card-title mb-2">Surya Pratap Rana</h4>
+                            <p class="card-text text-light mb-3">Co-Founder & Director</p>
+                            <p class="card-text">Surya is a tech enthusiast and skilled developer, passionate about
+                                creating cutting-edge solutions and delivering high-quality results.</p>
+                            <!-- Social Media Links -->
+                            <div class="d-flex justify-content-center mt-3">
+                                <a href="mailto:surya@quantumtwintech.com" class="text-light me-3">
+                                    <i class="fas fa-envelope fa-2x"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/surya-pratap-rana-293b3b19a/"
+                                    class="text-light me-3" target="_blank">
+                                    <i class="fab fa-linkedin fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- About Section -->
+    <section id="about" class="py-5 text-light bg-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">About Us</h2>
+                <p class="section-subtitle">Discover who we are and what drives our innovation</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <div class="bg-gradient p-4 rounded shadow-lg mission-card">
+                        <h3 class="text-light mb-3">Our Mission</h3>
+                        <p class="mb-0">At QuantumTwin Technologies, we are dedicated to driving technological
+                            innovation and delivering top-notch solutions that empower businesses to excel in a digital
+                            world.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="bg-gradient p-4 rounded shadow-lg values-card">
+                        <h3 class="text-light mb-3">Our Values</h3>
+                        <p class="mb-0">We stand by integrity, excellence, and putting our clients first. Our team works
+                            together to craft innovative, personalized solutions that go beyond your expectations.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center mt-5">
+                <div class="col-lg-4 mb-4">
+                    <div class="bg-secondary p-4 rounded shadow-lg hover-card">
+                        <i class="fas fa-rocket fa-3x text-primary mb-3"></i>
+                        <h4 class="text-light">Innovation</h4>
+                        <p class="mb-0">We are constantly pushing the boundaries of technology to provide innovative
+                            solutions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="bg-secondary p-4 rounded shadow-lg hover-card">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h4 class="text-light">Collaboration</h4>
+                        <p class="mb-0">Our team works closely with clients to understand their needs and deliver
+                            results.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="bg-secondary p-4 rounded shadow-lg hover-card">
+                        <i class="fas fa-award fa-3x text-primary mb-3"></i>
+                        <h4 class="text-light">Excellence</h4>
+                        <p class="mb-0">We are committed to delivering high-quality solutions that stand out in the
+                            industry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-dark text-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Get in Touch</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">We'd love to hear from you!</p>
+            </div>
+            <div class="row">
+                <!-- Contact Details -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-info p-4 rounded-3 shadow-lg">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-map-marker-alt fa-2x text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-0">Our Location</h5>
+                                <p>KA-23, Karpuri Puram, Ghaziabad District, Uttar Pradesh - 201002, India</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-phone fa-2x text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-0">Call Us</h5>
+                                <p>+91 98377 52718</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-envelope fa-2x text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-0">Email Us</h5>
+                                <p>info@quantumtwintech.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-clock fa-2x text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-0">Working Hours</h5>
+                                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                        <!-- New Section: Follow Us -->
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-share-alt fa-2x text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-0">Follow Us</h5>
+                                <div class="d-flex">
+                                    <a href="https://www.linkedin.com/company/quantumtwintech" class="text-light me-3"
+                                        target="_blank">
+                                        <i class="fab fa-linkedin fa-2x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/quantumtwintech" class="text-light me-3"
+                                        target="_blank">
+                                        <i class="fab fa-twitter fa-2x"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/quantumtwintech" class="text-light me-3"
+                                        target="_blank">
+                                        <i class="fab fa-facebook fa-2x"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/quantumtwintech" class="text-light me-3"
+                                        target="_blank">
+                                        <i class="fab fa-instagram fa-2x"></i>
+                                    </a>
+                                    <a href="mailto:info@quantumtwintech.com" class="text-light" target="_blank">
+                                        <i class="fas fa-envelope fa-2x"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-md-6" data-aos="fade-up">
+                    <div class="contact-info p-4 rounded-3 shadow-lg">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="John Doe">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Your Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="john.doe@example.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea class="form-control" id="message" rows="4"
+                                    placeholder="Your message here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center mt-5">
+                <p class="mb-0">&copy; 2024 QuantumTwin Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AOS JS for Animations -->
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
